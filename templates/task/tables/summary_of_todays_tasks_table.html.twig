@@ -1,0 +1,21 @@
+<h2 class="mt-4">Resumen de Tareas de Hoy</h2>
+<ul class="list-group">
+    {% for taskName, taskData in tasks_grouped_by_name %}
+        <li class="list-group-item">
+            <div>
+                <strong>{{ taskName }}</strong> - Iniciada: {{ taskData.task.startTime|date('H:i:s') }}
+                {% if taskData.task.endTime %}
+                    - Terminada: {{ taskData.task.endTime|date('H:i:s') }}
+                {% endif %}
+                - Duración Total:
+                <span class="badge badge-secondary">
+                    {{ taskData.total_duration // 3600 }}h {{ (taskData.total_duration % 3600) // 60 }}m {{ taskData.total_duration % 60 }}s
+                </span>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+<h2 class="mt-4">Tiempo Total Trabajado Hoy</h2>
+<p class="lead">
+    {{ total_time_today // 3600 }}h {{ (total_time_today % 3600) // 60 }}m {{ total_time_today % 60 }}s
+</p>

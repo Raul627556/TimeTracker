@@ -1,0 +1,12 @@
+<h2 class="mt-4">Tareas en Curso</h2>
+<ul class="list-group" id="task-in-progress-table">
+    {% for task in active_tasks %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <strong>{{ task.name }}</strong> - Tiempo transcurrido:
+                <span data-start-time="{{ task.startTime|date('Y-m-d H:i:s') }}">0h 0m 0s</span>
+            </div>
+            <button id="stop-button-task-{{ task.id }}" class="btn btn-danger btn-sm">Detener</button>
+        </li>
+    {% endfor %}
+</ul>
